@@ -79,7 +79,7 @@ table#table-comment-list {
   h1 {
     font-size: 1.4em;
     line-height: 0.8em;
-    padding-left: 10px;
+    text-align: center;
   }
 
   p#description {
@@ -103,8 +103,11 @@ table#table-comment-list {
     border-radius: 6px;
   }
 
+  #thread-id {
+    float: right;
+  }
   input#txt-thread-id {
-    width: 10.0em;
+    width: 6.0em;
     margin-left: 3px;
   }
   textarea#txt-comment {
@@ -125,9 +128,30 @@ table#table-comment-list {
   td.col-timestamp {
   }
 
+  #footer {
+    padding-bottom: 10px;
+    border-top: 1px dashed #888;
+  }
+  #copyright {
+    display: none;
+  }
+  #copyright-short {
+    width: 304px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin:0 auto;
+    text-align: right;
+    font-size: 0.8em;
+  }
+
 }
 
 @media (min-width: 321px) {
+
+  h1 {
+    font-size: 2.3em;
+    line-height: 0.6em;
+  }
 
   div#comment-form {
     width: 600px;
@@ -137,8 +161,11 @@ table#table-comment-list {
     border-radius: 6px;
   }
 
+  #thread-id {
+    float: right;
+  }
   input#txt-thread-id {
-    width: 10.0em;
+    width: 6.0em;
     margin-left: 3px;
   }
   textarea#txt-comment {
@@ -157,5 +184,20 @@ table#table-comment-list {
     word-wrap: break-word;
   }
 
+  #footer {
+    padding-bottom: 10px;
+    border-top: 1px dashed #888;
+  }
+  #copyright {
+    width: 915px;
+    margin:0 auto;
+    padding-left: 8px;
+    padding-right: 17px;
+    text-align: right;
+    font-size: 0.8em;
+  }
+  #copyright-short {
+    display: none;
+  }
 
 }
