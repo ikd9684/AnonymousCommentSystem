@@ -25,30 +25,9 @@ public class Application extends Controller {
      * @return
      */
     public static Result index() {
-        Logger.debug("[GET] index");
+        Logger.debug("[GET] ({})index", request().remoteAddress());
 
         return ok(views.html.index.render(""));
-    }
-
-    /**
-     *
-     * @param year
-     * @param month
-     * @param day
-     * @param hour
-     * @param minute
-     * @return
-     */
-    public static Result getCommentsByDate(Integer year,
-                                           Integer month,
-                                           Integer day,
-                                           Integer hour,
-                                           Integer minute,
-                                           String last) {
-        Logger.debug("[GET] yyyy={}, mm={}, dd={}, hh={}, mi={}, last={}", year, month, day, hour, minute, last);
-
-        List<Comment> list = Comment.getComments(null, year, month, day, hour, minute, last);
-        return ok(Json.toJson(list));
     }
 
     /**
@@ -68,13 +47,15 @@ public class Application extends Controller {
                                                Integer hour,
                                                Integer minute,
                                                String last) {
-        Logger.debug("[GET] threadID={}, yyyy={}, mm={}, dd={}, hh={}, mi={}, last={}", threadID, year, month, day, hour, minute, last);
+        Logger.debug("[GET] ({})threadID={}, yyyy={}, mm={}, dd={}, hh={}, mi={}, last={}", request().remoteAddress(), threadID, year, month, day, hour, minute, last);
 
-        String xRequestedWith = request().getHeader("X-requested-with");
-        Logger.debug("X-requested-with={}", xRequestedWith);
-
-        List<Comment> list = Comment.getComments(threadID, year, month, day, hour, minute, last);
-        return ok(Json.toJson(list));
+        if (isValidAjaxRequest()) {
+            List<Comment> list = Comment.getComments(threadID, year, month, day, hour, minute, last);
+            return ok(Json.toJson(list));
+        }
+        else {
+            return badRequest("400:BadRequest");
+        }
     }
 
     /**
@@ -83,9 +64,14 @@ public class Application extends Controller {
      * @return
      */
     public static Result getCommentByCommentID(String CommentID) {
-        Logger.debug("[GET] CommentID={}", CommentID);
+        Logger.debug("[GET] ({})CommentID={}", request().remoteAddress(), CommentID);
 
-        return ok();
+        if (isValidAjaxRequest()) {
+            return ok();
+        }
+        else {
+            return badRequest("400:BadRequest");
+        }
     }
 
     /**
@@ -94,14 +80,20 @@ public class Application extends Controller {
      * @return
      */
     public static Result postComment(String threadID) {
-        DynamicForm form =  new DynamicForm().bindFromRequest();
-        String postComment = form.get("comment");
-        Logger.debug("[POST] threadID={}, Comment={}", threadID, postComment);
 
-        Comment newComment = new Comment(threadID, postComment);
-        newComment.save();
+        if (isValidAjaxRequest()) {
+            DynamicForm form =  new DynamicForm().bindFromRequest();
+            String postComment = form.get("comment");
+            Logger.debug("[POST] ({})threadID={}, Comment={}", request().remoteAddress(), threadID, postComment);
 
-        return ok();
+            Comment newComment = new Comment(threadID, postComment);
+            newComment.save();
+
+            return ok();
+        }
+        else {
+            return badRequest("400:BadRequest");
+        }
     }
     /**
      *
@@ -109,9 +101,14 @@ public class Application extends Controller {
      * @return
      */
     public static Result putComment(String CommentID) {
-        Logger.debug("[PUT] threadID={}", CommentID);
+        Logger.debug("[PUT] ({})threadID={}", request().remoteAddress(), CommentID);
 
-        return ok();
+        if (isValidAjaxRequest()) {
+            return ok();
+        }
+        else {
+            return badRequest("400:BadRequest");
+        }
     }
     /**
      *
@@ -119,9 +116,23 @@ public class Application extends Controller {
      * @return
      */
     public static Result deleteComment(String CommentID) {
-        Logger.debug("[DELETE] threadID={}", CommentID);
+        Logger.debug("[DELETE] ({})threadID={}", request().remoteAddress(), CommentID);
 
-        return ok();
+        if (isValidAjaxRequest()) {
+            return ok();
+        }
+        else {
+            return badRequest("400:BadRequest");
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static boolean isValidAjaxRequest() {
+        String xRequestedWith = request().getHeader("X-requested-with");
+        return xRequestedWith != null;
     }
 
 }
