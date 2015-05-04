@@ -1,5 +1,5 @@
 
-var BASE_URI = '/comments';
+var BASE_URI = '/acs/comments';
 var DEFAULT_THREAD_ID = 'default';
 var MAX_MESSAGE_LENGTH;
 

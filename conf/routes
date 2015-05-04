@@ -12,16 +12,16 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 #GET     /favicon.ico                            404
 
 
-GET     /comments/$threadId<[a-z_][a-z0-9_]*>                                                                         controllers.Application.getCommentsByThreadID(threadId:String, year:Integer=null, month:Integer=null, day:Integer=null, hour:Integer=null, minute:Integer=null, last:String?=null)
-GET     /comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>                                                           controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer=null, day:Integer=null, hour:Integer=null, minute:Integer=null, last:String?=null)
-GET     /comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>/$month<[0-9]+>                                            controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer, day:Integer=null, hour:Integer=null, minute:Integer=null, last:String?=null)
-GET     /comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>/$month<[0-9]+>/$day<[0-9]+>                               controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer, day:Integer, hour:Integer=null, minute:Integer=null, last:String?=null)
-GET     /comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>/$month<[0-9]+>/$day<[0-9]+>/$hour<[0-9]+>                 controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer, day:Integer, hour:Integer, minute:Integer=null, last:String?=null)
-GET     /comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>/$month<[0-9]+>/$day<[0-9]+>/$hour<[0-9]+>/$minute<[0-9]+> controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer, day:Integer, hour:Integer, minute:Integer, last:String?=null)
+GET     /acs/comments/$threadId<[a-z_][a-z0-9_]*>                                                                         controllers.Application.getCommentsByThreadID(threadId:String, year:Integer=null, month:Integer=null, day:Integer=null, hour:Integer=null, minute:Integer=null, last:String?=null)
+GET     /acs/comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>                                                           controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer=null, day:Integer=null, hour:Integer=null, minute:Integer=null, last:String?=null)
+GET     /acs/comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>/$month<[0-9]+>                                            controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer, day:Integer=null, hour:Integer=null, minute:Integer=null, last:String?=null)
+GET     /acs/comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>/$month<[0-9]+>/$day<[0-9]+>                               controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer, day:Integer, hour:Integer=null, minute:Integer=null, last:String?=null)
+GET     /acs/comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>/$month<[0-9]+>/$day<[0-9]+>/$hour<[0-9]+>                 controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer, day:Integer, hour:Integer, minute:Integer=null, last:String?=null)
+GET     /acs/comments/$threadId<[a-z_][a-z0-9_]*>/$year<[0-9]+>/$month<[0-9]+>/$day<[0-9]+>/$hour<[0-9]+>/$minute<[0-9]+> controllers.Application.getCommentsByThreadID(threadId:String, year:Integer, month:Integer, day:Integer, hour:Integer, minute:Integer, last:String?=null)
 
 
-POST    /comments/$threadId<[a-z_][a-z0-9_]*>   controllers.Application.postComment(threadId:String)
+POST    /acs/comments/$threadId<[a-z_][a-z0-9_]*>   controllers.Application.postComment(threadId:String)
 
-#PUT     /comments/$commentID<[a-zA-Z0-9-]+>     controllers.Application.putComment(commentID:String)
+#PUT     /acs/comments/$commentID<[a-zA-Z0-9-]+>     controllers.Application.putComment(commentID:String)
 
-#DELETE  /comments/$commentID<[a-zA-Z0-9-]+>     controllers.Application.deleteComment(commentID:String)
+#DELETE  /acs/comments/$commentID<[a-zA-Z0-9-]+>     controllers.Application.deleteComment(commentID:String)
